@@ -5,10 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class Hello {
+	@RestController
+	public class Hello {
 
-//	private static final 
+	//	private static final 
 	Logger LOG = LoggerFactory.getLogger(Hello.class);
 
 	// URL - http://localhost:8082/hello

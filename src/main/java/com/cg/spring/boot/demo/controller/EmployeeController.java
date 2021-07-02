@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.spring.boot.demo.model.Employee;
 
 @RestController
-public class EmployeeController {
+	public class EmployeeController {
 
-	public static final Logger LOG = LoggerFactory.getLogger(EmployeeController.class);
+		public static final Logger LOG = LoggerFactory.getLogger(EmployeeController.class);
 
-	@RequestMapping("/emp")
-	public Employee getEmployee() {
+		@RequestMapping("/emp")
+		public Employee getEmployee() {
 		LOG.info("emp");
 		return new Employee(101, "Sonu", 10.50);
 	}

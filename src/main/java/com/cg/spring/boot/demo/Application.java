@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class Application {
+	public class Application {
 
 	public static final Logger LOG = LoggerFactory.getLogger(Application.class);
 
@@ -19,3 +19,4 @@ public class Application {
 	}
 
 }
+
