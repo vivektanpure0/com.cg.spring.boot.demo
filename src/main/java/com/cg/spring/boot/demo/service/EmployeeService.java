@@ -34,7 +34,17 @@ public class EmployeeService {
 	        LOG.info("addEmployee");
 	        return repository.save(emp);
 	    }
+	 
+	 public Employee updateEmployee(Employee emp) {
+	        LOG.info("updateEmployee");
+	        return repository.save(emp);
+	    }
 
+	 public int deleteEmployee(int eid) {
+	        LOG.info("deleteEmployee");
+	        repository.deleteById(eid);
+	        return eid;
+	    }
 	/**
 	 * Try the below code only after you are comfortable with basic spring boot
 	 * concepts

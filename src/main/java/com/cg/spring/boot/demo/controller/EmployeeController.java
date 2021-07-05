@@ -51,7 +51,18 @@ public class EmployeeController {
 	        LOG.info("addEmp");
 	        return service.addEmployee(emp);
 	    }
+	  
+	  @PutMapping("/updatemp")
+	    public Employee updateEmp(@RequestBody Employee emp) {
+	        LOG.info("addEmp");
+	        return service.updateEmployee(emp);
+	    }
 	 
+	  @DeleteMapping("/updatemp/{eid}")
+	    public int deleteEmp(@PathVariable("eid") int eid) {
+	        LOG.info("deleteEmp");
+	        return service.deleteEmployee(eid);
+	    }
 
 	/**
 	 * Try the below code only after you are comfortable with basic spring boot
