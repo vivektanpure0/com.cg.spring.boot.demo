@@ -20,4 +20,11 @@ public class Hello {
 		LOG.info("Hello world! INFO");
 		return "Hello world!";
 	}
+	
+//	@RequestMapping("/hello") // endpoint, API
+	@RequestMapping("/")
+	public String Welcome() {
+		LOG.info("Welcome");
+		return "Welcome to cg spring boot app";
+	}
 }
