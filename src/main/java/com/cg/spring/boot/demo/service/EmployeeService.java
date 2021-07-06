@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.spring.boot.demo.exception.EmployeeNotFoundException;
 import com.cg.spring.boot.demo.model.Employee;
 import com.cg.spring.boot.demo.repository.EmployeeRepository;
 
@@ -18,10 +19,20 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeRepository repository;
 
+//	public Employee findEmployeeById(int eid) {
+//		LOG.info("findEmployeeById");
+//		return repository.findById(eid).get();
+//	}
+	
 	public Employee findEmployeeById(int eid) {
 		LOG.info("findEmployeeById");
-		return repository.findById(eid).get();
+		Employee emp = repository.findById(eid).get();
+		if (emp != null)
+			return emp;
+		else
+			throw new EmployeeNotFoundException();
 	}
+	
 
 	public List<Employee> findEmployeeByEname(String ename) {
 		LOG.info("findEmployeeByEname");
