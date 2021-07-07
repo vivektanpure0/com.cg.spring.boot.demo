@@ -67,6 +67,12 @@ public class EmployeeService {
 		return eid;
 	}
 
+
+	public void updateSalaryGreatherThan(double newSalary, double oldSalary) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/**
 	 * Try the below code only after you are comfortable with basic spring boot
 	 * concepts

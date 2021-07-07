@@ -1,10 +1,12 @@
 package com.cg.spring.boot.demo.controller;
 
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.spring.boot.demo.model.Employee;
 import com.cg.spring.boot.demo.service.EmployeeService;
+
+/**
+ * 
+ * @author Vaman Deshmukh
+ * 
+ * REST controller for Employee APIs
+ *
+ */
 
 @RestController
 public class EmployeeController {
@@ -30,10 +40,38 @@ public class EmployeeController {
 		return service.findEmployeeById(101);
 	}
 
+	// method that returns Employee object
+//	@GetMapping("/getemp/{eid}")
+//	public Employee getEmployeeById(@PathVariable("eid") int eid) {
+//		LOG.info("getemp");
+//		return service.findEmployeeById(eid);
+//	}
+
+//	// method that returns ResponseEntity
+//	@GetMapping("/getemp/{eid}")
+//	public ResponseEntity<Employee> getEmployeeById(@PathVariable("eid") int eid) {
+//		LOG.info("getemp");
+//		Employee emp = service.findEmployeeById(eid);
+//		if (emp != null) {
+//			return new ResponseEntity<Employee>(emp, HttpStatus.OK);
+//		} else {
+//			return new ResponseEntity<Employee>(emp, HttpStatus.NOT_FOUND);
+//		}
+//	}
+
+	// method that returns ResponseEntity with headers
 	@GetMapping("/getemp/{eid}")
-	public Employee getEmployeeById(@PathVariable("eid") int eid) {
+	public ResponseEntity<Employee> getEmployeeById(@PathVariable("eid") int eid) {
 		LOG.info("getemp");
-		return service.findEmployeeById(eid);
+		Employee emp = service.findEmployeeById(eid);
+		HttpHeaders headers = new HttpHeaders();
+		if (emp != null) {
+			headers.add("Employee name", emp.getEname());
+			return new ResponseEntity<Employee>(emp, headers, HttpStatus.OK);
+		} else {
+			headers.add("Employee name", "Name not available");
+			return new ResponseEntity<Employee>(emp, headers, HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@GetMapping("/getempbyname/{ename}")
@@ -64,6 +102,13 @@ public class EmployeeController {
 	public Employee updateEmp(@RequestBody Employee emp) {
 		LOG.info("addEmp");
 		return service.updateEmployee(emp);
+	}
+
+	@GetMapping("/updatesal/{newSalary}/{oldSalary}")
+	public String updateSal(@PathVariable("newSalary") double newSalary, @PathVariable("oldSalary") double oldSalary) {
+		LOG.info("updateSal");
+		service.updateSalaryGreatherThan(newSalary, oldSalary);
+		return "Salary updated";
 	}
 
 	@DeleteMapping("deleteemp/{eid}")
